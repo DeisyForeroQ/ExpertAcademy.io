@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Torneo de Clasificación - Tabla de Puntuación</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        gold: '#FFD700',
+                        silver: '#C0C0C0',
+                        bronze: '#CD7F32',
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .glow-gold { box-shadow: 0 0 20px rgba(255, 215, 0, 0.3); }
+        .glow-silver { box-shadow: 0 0 15px rgba(192, 192, 192, 0.25); }
+        .glow-bronze { box-shadow: 0 0 15px rgba(205, 127, 50, 0.25); }
+        .transition-all-200 { transition: all 0.2s ease-in-out; }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen pb-12 transition-colors duration-300">
+
+    <!-- Navbar -->
+    <nav class="sticky top-0 z-50 backdrop-blur-md bg-slate-900/80 border-b border-slate-800 px-4 py-3">
+        <div class="max-w-7xl mx-mx-auto flex justify-between items-center max-w-7xl mx-auto">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 to-indigo-600 flex items-center justify-center text-white font-bold text-xl shadow-lg">
+                    <i class="fas fa-trophy"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-lg leading-tight bg-gradient-to-r from-amber-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent">Liga del Grupo 2026</h1>
+                    <p class="text-xs text-slate-400">Torneo Anual de Puntuación</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-2">
+                <button id="themeToggle" class="p-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-amber-400 transition-all">
+                    <i class="fas fa-sun text-lg hidden dark:block"></i>
+                    <i class="fas fa-moon text-lg block dark:hidden"></i>
+                </button>
+                <button onclick="resetData()" class="text-xs sm:text-sm bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-2 rounded-xl transition-all border border-slate-700 flex items-center gap-1.5">
+                    <i class="fas fa-undo"></i> <span class="hidden sm:inline">Reiniciar Datos</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 mt-6 space-y-8">
+        <!-- Hero Section con foto de grupo -->
+        <section class="relative rounded-3xl overflow-hidden bg-slate-800 border border-slate-700/60 shadow-2xl">
+            <div class="absolute inset-0 z-0">
+                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1600&q=80" 
+                     alt="Foto del Grupo" 
+                     onerror="this.src='https://placehold.co/1600x600/1e293b/ffffff?text=Foto+del+Grupo'"
+                     class="w-full h-full object-cover opacity-25 filter blur-[1px]">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/70 to-transparent"></div>
+            </div>
+
+            <div class="relative z-10 p-6 sm:p-10 md:p-12 max-w-3xl">
+                <span class="px-3 py-1 bg-amber-500/20 text-amber-400 border border-amber-500/30 text-xs font-semibold rounded-full uppercase tracking-wider">
+                    Temporada Oficial
+                </span>
+                <h2 class="text-3xl sm:text-5xl font-black mt-3 text-white tracking-tight">
+                    Competencia General de Puntos
+                </h2>
+                <p class="mt-3 text-slate-300 text-sm sm:text-base leading-relaxed">
+                    ¡Bienvenidos al panel interactivo del grupo! Aquí podrás seguir en tiempo real el rendimiento de los 25 participantes, gestionar puntuaciones, victorias y consultar los premios acordados para esta edición.
+                </p>
+                <div class="mt-6 flex flex-wrap gap-4 text-xs sm:text-sm">
+                    <div class="bg-slate-900/80 backdrop-blur border border-slate-700/50 px-4 py-2 rounded-xl flex items-center gap-2">
+                        <i class="fas fa-users text-indigo-400"></i>
+                        <span><strong>25</strong> Participantes</span>
+                    </div>
+                    <div class="bg-slate-900/80 backdrop-blur border border-slate-700/50 px-4 py-2 rounded-xl flex items-center gap-2">
+                        <i class="fas fa-calendar-alt text-emerald-400"></i>
+                        <span>Finaliza: <strong>30 Nov, 2026</strong></span>
+                    </div>
+                    <div class="bg-slate-900/80 backdrop-blur border border-slate-700/50 px-4 py-2 rounded-xl flex items-center gap-2">
+                        <i class="fas fa-bolt text-amber-400"></i>
+                        <span>Actualización en Vivo</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seccion de Premios e Información -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- 1er Lugar -->
+            <div class="bg-gradient-to-br from-amber-500/10 via-slate-800 to-slate-800 border border-amber-500/40 rounded-2xl p-6 relative overflow-hidden glow-gold group hover:-translate-y-1 transition-all">
+                <div class="absolute -right-4 -bottom-4 text-amber-500/10 text-8xl font-black">1</div>
+                <div class="w-12 h-12 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-2xl font-bold mb-4">
+                    🥇
+                </div>
+                <h3 class="text-xl font-bold text-amber-400">1er Lugar - Campeón</h3>
+                <p class="text-slate-300 text-sm mt-2 font-medium">$500 USD + Trofeo de Oro</p>
+                <p class="text-slate-400 text-xs mt-1">Acceso VIP exclusivo al siguiente evento + Certificado Digital de Honor.</p>
+            </div>
+
+            <!-- 2do Lugar -->
+            <div class="bg-gradient-to-br from-slate-400/10 via-slate-800 to-slate-800 border border-slate-400/30 rounded-2xl p-6 relative overflow-hidden glow-silver group hover:-translate-y-1 transition-all">
+                <div class="absolute -right-4 -bottom-4 text-slate-400/10 text-8xl font-black">2</div>
+                <div class="w-12 h-12 rounded-xl bg-slate-400/20 text-slate-300 flex items-center justify-center text-2xl font-bold mb-4">
+                    🥈
+                </div>
+                <h3 class="text-xl font-bold text-slate-200">2do Lugar - Subcampeón</h3>
+                <p class="text-slate-300 text-sm mt-2 font-medium">$250 USD + Medalla de Plata</p>
+                <p class="text-slate-400 text-xs mt-1">Kit de productos oficiales + Reconocimiento especial del grupo.</p>
+            </div>
+
+            <!-- 3er Lugar -->
+            <div class="bg-gradient-to-br from-amber-700/10 via-slate-800 to-slate-800 border border-amber-700/30 rounded-2xl p-6 relative overflow-hidden glow-bronze group hover:-translate-y-1 transition-all">
+                <div class="absolute -right-4 -bottom-4 text-amber-700/10 text-8xl font-black">3</div>
+                <div class="w-12 h-12 rounded-xl bg-amber-700/20 text-amber-600 flex items-center justify-center text-2xl font-bold mb-4">
+                    🥉
+                </div>
+                <h3 class="text-xl font-bold text-amber-600">3er Lugar - Tercer Puesto</h3>
+                <p class="text-slate-300 text-sm mt-2 font-medium">$100 USD + Medalla de Bronce</p>
+                <p class="text-slate-400 text-xs mt-1">Suscripción premium por 6 meses e insignia distintiva.</p>
+            </div>
+        </section>
+
+        <!-- Tabla e Interacción -->
+        <section class="bg-slate-800 rounded-2xl border border-slate-700/60 shadow-xl overflow-hidden">
+            <!-- Header de Controles -->
+            <div class="p-5 sm:p-6 border-b border-slate-700 flex flex-col md:flex-row gap-4 items-center justify-between">
+                <div>
+                    <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                        <i class="fas fa-list-ol text-amber-400"></i> Tabla General de Clasificación
+                    </h3>
+                    <p class="text-xs text-slate-400 mt-1">Gestiona o modifica los puntos de los 25 participantes en tiempo real.</p>
+                </div>
+
+                <div class="flex flex-wrap items-center gap-3 w-full md:w-auto">
+                    <!-- Buscador -->
+                    <div class="relative flex-1 sm:w-64">
+                        <i class="fas fa-search absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+                        <input type="text" id="searchInput" oninput="filterPlayers()" placeholder="Buscar participante..." 
+                               class="w-full bg-slate-900 border border-slate-700 rounded-xl pl-9 pr-4 py-2 text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all">
+                    </div>
+
+                    <!-- Botón Ordenar -->
+                    <button onclick="sortByPoints()" class="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-bold px-4 py-2 rounded-xl text-sm flex items-center gap-2 shadow-lg shadow-amber-500/20 transition-all">
+                        <i class="fas fa-sort-amount-down"></i> Ordenar por Puntos
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tabla Responsiva -->
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-slate-900/60 text-slate-400 text-xs uppercase tracking-wider border-b border-slate-700">
+                            <th class="py-3.5 px-4 text-center">Pos</th>
+                            <th class="py-3.5 px-4">Participante</th>
+                            <th class="py-3.5 px-4 text-center">V / D</th>
+                            <th class="py-3.5 px-4 text-center">Estado</th>
+                            <th class="py-3.5 px-4 text-center">Puntos</th>
+                            <th class="py-3.5 px-4 text-center">Acciones Rápidas</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leaderboardBody" class="divide-y divide-slate-700/50 text-sm">
+                        <!-- Generado por JS -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="noResults" class="hidden p-8 text-center text-slate-400">
+                <i class="fas fa-user-slash text-4xl mb-3 text-slate-600"></i>
+                <p>No se encontraron participantes con ese nombre.</p>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Datos Iniciales de Ejemplo para 25 Personas
+        const initialPlayers = [
+            { id: 1, name: "Carlos Mendoza", points: 1450, wins: 15, losses: 2, status: "Activo", avatar: "https://i.pravatar.cc/150?img=11" },
+            { id: 2, name: "Sofia Ramírez", points: 1380, wins: 14, losses: 3, status: "Activo", avatar: "https://i.pravatar.cc/150?img=5" },
+            { id: 3, name: "Alejandro Silva", points: 1290, wins: 12, losses: 4, status: "Activo", avatar: "https://i.pravatar.cc/150?img=12" },
+            { id: 4, name: "Mariana Torres", points: 1150, wins: 10, losses: 5, status: "Activo", avatar: "https://i.pravatar.cc/150?img=9" },
+            { id: 5, name: "Gabriel Vargas", points: 1080, wins: 9, losses: 6, status: "Racha", avatar: "https://i.pravatar.cc/150?img=13" },
+            { id: 6, name: "Lucía Fernández", points: 1020, wins: 9, losses: 7, status: "Activo", avatar: "https://i.pravatar.cc/150?img=10" },
+            { id: 7, name: "Mateo Gómez", points: 980, wins: 8, losses: 6, status: "Inactivo", avatar: "https://i.pravatar.cc/150?img=14" },
+            { id: 8, name: "Valeria Castro", points: 950, wins: 8, losses: 7, status: "Activo", avatar: "https://i.pravatar.cc/150?img=20" },
+            { id: 9, name: "Diego Morales", points: 910, wins: 7, losses: 6, status: "Racha", avatar: "https://i.pravatar.cc/150?img=15" },
+            { id: 10, name: "Camila Navarro", points: 880, wins: 7, losses: 8, status: "Activo", avatar: "https://i.pravatar.cc/150?img=16" },
+            { id: 11, name: "Javier Ríos", points: 840, wins: 6, losses: 8, status: "Activo", avatar: "https://i.pravatar.cc/150?img=17" },
+            { id: 12, name: "Daniela Ortiz", points: 800, wins: 6, losses: 9, status: "Inactivo", avatar: "https://i.pravatar.cc/150?img=21" },
+            { id: 13, name: "Andrés Delgado", points: 760, wins: 5, losses: 8, status: "Activo", avatar: "https://i.pravatar.cc/150?img=18" },
+            { id: 14, name: "Paula Romero", points: 720, wins: 5, losses: 10, status: "Activo", avatar: "https://i.pravatar.cc/150?img=22" },
+            { id: 15, name: "Fernando Vega", points: 690, wins: 4, losses: 9, status: "Activo", avatar: "https://i.pravatar.cc/150?img=19" },
+            { id: 16, name: "Natalia Benítez", points: 650, wins: 4, losses: 10, status: "Activo", avatar: "https://i.pravatar.cc/150?img=23" },
+            { id: 17, name: "Ricardo Paredes", points: 610, wins: 4, losses: 11, status: "Inactivo", avatar: "https://i.pravatar.cc/150?img=24" },
+            { id: 18, name: "Elena Acosta", points: 580, wins: 3, losses: 10, status: "Activo", avatar: "https://i.pravatar.cc/150?img=25" },
+            { id: 19, name: "Santiago Guerrero", points: 540, wins: 3, losses: 11, status: "Activo", avatar: "https://i.pravatar.cc/150?img=26" },
+            { id: 20, name: "Isabela Medina", points: 500, wins: 3, losses: 12, status: "Activo", avatar: "https://i.pravatar.cc/150?img=27" },
+            { id: 21, name: "Hugo Herrera", points: 460, wins: 2, losses: 11, status: "Activo", avatar: "https://i.pravatar.cc/150?img=28" },
+            { id: 22, name: "Sonia Molina", points: 410, wins: 2, losses: 12, status: "Inactivo", avatar: "https://i.pravatar.cc/150?img=29" },
+            { id: 23, name: "Adrián Blanco", points: 370, wins: 2, losses: 13, status: "Activo", avatar: "https://i.pravatar.cc/150?img=30" },
+            { id: 24, name: "Gabriela Reyes", points: 320, wins: 1, losses: 13, status: "Activo", avatar: "https://i.pravatar.cc/150?img=31" },
+            { id: 25, name: "Emilio Lara", points: 280, wins: 1, losses: 14, status: "Activo", avatar: "https://i.pravatar.cc/150?img=32" }
+        ];
+
+        let players = [];
+
+        function loadPlayers() {
+            const saved = localStorage.getItem('group_leaderboard_players');
+            if (saved) {
+                try {
+                    players = JSON.parse(saved);
+                } catch (e) {
+                    players = [...initialPlayers];
+                }
+            } else {
+                players = [...initialPlayers];
+            }
+            renderTable();
+        }
+
+        function savePlayers() {
+            localStorage.setItem('group_leaderboard_players', JSON.stringify(players));
+        }
+
+        function resetData() {
+            players = JSON.parse(JSON.stringify(initialPlayers));
+            savePlayers();
+            renderTable();
+        }
+
+        function sortByPoints() {
+            players.sort((a, b) => b.points - a.points);
+            savePlayers();
+            renderTable();
+        }
+
+        function modifyPoints(index, delta) {
+            players[index].points = Math.max(0, players[index].points + delta);
+            if(delta > 0) players[index].wins += 1;
+            savePlayers();
+            renderTable();
+        }
+
+        function updatePointsDirectly(index, val) {
+            const num = parseInt(val, 10);
+            if (!isNaN(num)) {
+                players[index].points = Math.max(0, num);
+                savePlayers();
+            }
+        }
+
+        function getRankBadge(rank) {
+            if (rank === 1) return '<span class="text-xl inline-block" title="Oro">🥇</span>';
+            if (rank === 2) return '<span class="text-xl inline-block" title="Plata">🥈</span>';
+            if (rank === 3) return '<span class="text-xl inline-block" title="Bronce">🥉</span>';
+            return `<span class="font-bold text-slate-400">#${rank}</span>`;
+        }
+
+        function getStatusBadge(status) {
+            if (status === 'Racha') {
+                return '<span class="px-2.5 py-0.5 rounded-full text-xs bg-amber-500/10 text-amber-400 border border-amber-500/20 font-medium">🔥 Racha</span>';
+            }
+            if (status === 'Inactivo') {
+                return '<span class="px-2.5 py-0.5 rounded-full text-xs bg-slate-700/50 text-slate-400 border border-slate-600/30 font-medium">Inactivo</span>';
+            }
+            return '<span class="px-2.5 py-0.5 rounded-full text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-medium">Activo</span>';
+        }
+
+        function renderTable() {
+            const tbody = document.getElementById('leaderboardBody');
+            const searchVal = document.getElementById('searchInput').value.toLowerCase();
+            tbody.innerHTML = '';
+
+            let visibleCount = 0;
+
+            players.forEach((player, index) => {
+                if (!player.name.toLowerCase().includes(searchVal)) return;
+
+                visibleCount++;
+                const rank = index + 1;
+                const isTop3 = rank <= 3;
+                
+                let bgHighlight = "hover:bg-slate-750";
+                if (rank === 1) bgHighlight = "bg-amber-500/5 hover:bg-amber-500/10";
+                if (rank === 2) bgHighlight = "bg-slate-300/5 hover:bg-slate-300/10";
+                if (rank === 3) bgHighlight = "bg-amber-700/5 hover:bg-amber-700/10";
+
+                const tr = document.createElement('tr');
+                tr.className = `transition-colors duration-150 ${bgHighlight}`;
+                tr.innerHTML = `
+                    <td class="py-3.5 px-4 text-center font-semibold">
+                        ${getRankBadge(rank)}
+                    </td>
+                    <td class="py-3.5 px-4">
+                        <div class="flex items-center gap-3">
+                            <img src="${player.avatar}" alt="${player.name}" 
+                                 onerror="this.src='https://placehold.co/100x100/334155/ffffff?text=${player.name.charAt(0)}'"
+                                 class="w-10 h-10 rounded-full object-cover border-2 ${isTop3 ? 'border-amber-400' : 'border-slate-600'}">
+                            <div>
+                                <p class="font-bold text-slate-100">${player.name}</p>
+                                <p class="text-xs text-slate-400 sm:hidden">Puntos: ${player.points}</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="py-3.5 px-4 text-center text-xs font-medium">
+                        <span class="text-emerald-400">${player.wins}V</span> / <span class="text-rose-400">${player.losses}D</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-center">
+                        ${getStatusBadge(player.status)}
+                    </td>
+                    <td class="py-3.5 px-4 text-center">
+                        <input type="number" value="${player.points}" 
+                               onchange="updatePointsDirectly(${index}, this.value)"
+                               class="w-20 bg-slate-900 border border-slate-700 rounded-lg px-2 py-1 text-center font-bold text-amber-400 focus:outline-none focus:border-indigo-500">
+                    </td>
+                    <td class="py-3.5 px-4 text-center">
+                        <div class="flex justify-center gap-1.5">
+                            <button onclick="modifyPoints(${index}, 10)" title="+10 Puntos" 
+                                    class="w-8 h-8 rounded-lg bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-400 font-bold flex items-center justify-center transition-all">
+                                +10
+                            </button>
+                            <button onclick="modifyPoints(${index}, 50)" title="+50 Puntos" 
+                                    class="w-8 h-8 rounded-lg bg-indigo-500/20 hover:bg-indigo-500/30 text-indigo-400 font-bold flex items-center justify-center transition-all">
+                                +50
+                            </button>
+                            <button onclick="modifyPoints(${index}, -10)" title="-10 Puntos" 
+                                    class="w-8 h-8 rounded-lg bg-rose-500/20 hover:bg-rose-500/30 text-rose-400 font-bold flex items-center justify-center transition-all">
+                                -10
+                            </button>
+                        </div>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            document.getElementById('noResults').classList.toggle('hidden', visibleCount > 0);
+        }
+
+        function filterPlayers() {
+            renderTable();
+        }
+
+        const themeToggleBtn = document.getElementById('themeToggle');
+        themeToggleBtn.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+            const isDark = document.documentElement.classList.contains('dark');
+            if (!isDark) {
+                document.body.classList.remove('bg-slate-900', 'text-slate-100');
+                document.body.classList.add('bg-slate-100', 'text-slate-900');
+            } else {
+                document.body.classList.remove('bg-slate-100', 'text-slate-900');
+                document.body.classList.add('bg-slate-900', 'text-slate-100');
+            }
+        });
+
+        window.onload = function() {
+            loadPlayers();
+        };
+    </script>
+</body>
+</html>
