@@ -17,7 +17,7 @@
                             cyan1: '#00A3DD', // Cyan I
                             cyan2: '#006EB3', // Cyan II
                             cyan3: '#06E5FC', // Cyan III
-                            dark: '#130FA6',   // Fondo súper oscuro 130FA6 003DA5
+                            dark: '#0a0836',   // Fondo profundo equilibrado basado en tu tono
                         }
                     }
                 }
@@ -28,35 +28,33 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Inter', sans-serif; }
-        .glow-gold { box-shadow: 0 0 25px rgba(6, 229, 252, 0.4); }
-        .glow-silver { box-shadow: 0 0 20px rgba(0, 163, 221, 0.3); }
-        .glow-bronze { box-shadow: 0 0 20px rgba(0, 110, 179, 0.35); }
+        .glow-gold { box-shadow: 0 0 25px rgba(6, 229, 252, 0.35); }
+        .glow-silver { box-shadow: 0 0 20px rgba(0, 163, 221, 0.25); }
+        .glow-bronze { box-shadow: 0 0 20px rgba(0, 110, 179, 0.3); }
     </style>
 </head>
 <body class="bg-adistec-dark text-slate-100 min-h-screen pb-12 transition-colors duration-300">
 
-    <!-- Navbar con Gradiente Superior -->
-    <nav class="sticky top-0 z-50 backdrop-blur-md bg-adistec-dark/90 border-b border-adistec-blue1/60 px-4 py-3 shadow-xl">
+    <!-- Navbar -->
+    <nav class="sticky top-0 z-50 backdrop-blur-md bg-adistec-dark/95 border-b border-adistec-blue2/40 px-4 py-3 shadow-xl">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <div class="flex items-center gap-3">
-                <!-- Icono con Gradiente de Azul I a Cyan III -->
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-adistec-blue1 via-adistec-cyan1 to-adistec-cyan3 flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-adistec-cyan1/30">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-adistec-blue2 via-adistec-cyan2 to-adistec-cyan1 flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-adistec-cyan2/20">
                     <i class="fas fa-trophy"></i>
                 </div>
                 <div>
-                    <!-- Texto con Gradiente Multinivel -->
                     <h1 class="font-bold text-lg leading-tight bg-gradient-to-r from-white via-adistec-cyan1 to-adistec-cyan3 bg-clip-text text-transparent">
                         Expert Academy 2026-2027
                     </h1>
-                    <p class="text-xs text-adistec-cyan3/80">Adistec & VMware by Broadcom</p>
+                    <p class="text-xs text-adistec-cyan3/70">Adistec & VMware by Broadcom</p>
                 </div>
             </div>
             <div class="flex items-center gap-2">
-                <button id="themeToggle" class="p-2.5 rounded-xl bg-gradient-to-r from-adistec-blue1/40 to-adistec-blue2/40 hover:from-adistec-blue1/70 hover:to-adistec-blue2/70 text-adistec-cyan3 hover:text-white transition-all border border-adistec-blue1/80">
+                <button id="themeToggle" class="p-2.5 rounded-xl bg-adistec-blue2/30 hover:bg-adistec-blue2/60 text-adistec-cyan3 hover:text-white transition-all border border-adistec-blue2/50">
                     <i class="fas fa-sun text-lg hidden dark:block"></i>
                     <i class="fas fa-moon text-lg block dark:hidden"></i>
                 </button>
-                <button onclick="resetData()" class="text-xs sm:text-sm bg-gradient-to-r from-adistec-blue1/40 to-adistec-blue2/40 hover:from-adistec-blue1/70 hover:to-adistec-blue2/70 text-slate-200 px-3 py-2 rounded-xl transition-all border border-adistec-blue1/80 flex items-center gap-1.5 shadow-sm">
+                <button onclick="resetData()" class="text-xs sm:text-sm bg-adistec-blue2/30 hover:bg-adistec-blue2/60 text-slate-200 px-3 py-2 rounded-xl transition-all border border-adistec-blue2/50 flex items-center gap-1.5 shadow-sm">
                     <i class="fas fa-undo text-adistec-cyan3"></i> <span class="hidden sm:inline">Reiniciar Datos</span>
                 </button>
             </div>
@@ -64,20 +62,18 @@
     </nav>
 
     <main class="max-w-7xl mx-auto px-4 sm:px-6 mt-6 space-y-8">
-        <!-- Hero Section con Fondo de Gradiente Complejo -->
-        <section class="relative rounded-3xl overflow-hidden bg-gradient-to-br from-adistec-blue1/40 via-adistec-blue2/30 to-adistec-dark border border-adistec-blue1 shadow-2xl">
+        <!-- Hero Section -->
+        <section class="relative rounded-3xl overflow-hidden bg-gradient-to-br from-adistec-blue1/30 via-adistec-blue2/20 to-adistec-dark border border-adistec-blue1/40 shadow-2xl">
             <div class="absolute inset-0 z-0">
                 <img src="vmware.jpg" 
                      alt="Foto del Grupo" 
                      onerror="this.src='https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80'"
-                     class="w-full h-full object-cover opacity-20 filter blur-[1px]">
-                <!-- Superposición de Gradiente Radial y Lineal -->
-                <div class="absolute inset-0 bg-gradient-to-tr from-adistec-dark via-adistec-blue2/80 to-adistec-cyan2/40"></div>
+                     class="w-full h-full object-cover opacity-15 filter blur-[1px]">
+                <div class="absolute inset-0 bg-gradient-to-tr from-adistec-dark via-adistec-blue2/70 to-adistec-cyan2/30"></div>
             </div>
 
             <div class="relative z-10 p-6 sm:p-10 md:p-12 max-w-7xl">
-                <!-- Badge con Gradiente -->
-                <span class="px-3.5 py-1.5 bg-gradient-to-r from-adistec-cyan1/20 to-adistec-cyan3/20 text-adistec-cyan3 border border-adistec-cyan3/40 text-xs font-semibold rounded-full uppercase tracking-wider shadow-sm backdrop-blur-sm">
+                <span class="px-3.5 py-1.5 bg-adistec-cyan1/15 text-adistec-cyan3 border border-adistec-cyan1/30 text-xs font-semibold rounded-full uppercase tracking-wider shadow-sm backdrop-blur-sm">
                     Temporada Oficial Academy Expert
                 </span>
                 <h2 class="text-2xl sm:text-5xl font-black mt-3 text-white tracking-tight bg-gradient-to-r from-white via-slate-100 to-adistec-cyan3 bg-clip-text text-transparent">
@@ -88,17 +84,16 @@
                     En este espacio interactivo podrán monitorear en tiempo real el desempeño y avance de los participantes para esta edición.
                 </p>
 
-                <!-- Tarjetas de Información con Gradiente sutil -->
                 <div class="mt-6 flex flex-wrap gap-4 text-xs sm:text-sm">
-                    <div class="bg-gradient-to-r from-adistec-dark/90 to-adistec-blue2/50 backdrop-blur border border-adistec-blue1/80 px-4 py-2 rounded-xl flex items-center gap-2 shadow-inner">
+                    <div class="bg-adistec-dark/80 backdrop-blur border border-adistec-blue1/40 px-4 py-2 rounded-xl flex items-center gap-2 shadow-inner">
                         <i class="fas fa-users text-adistec-cyan3"></i>
                         <span><strong>25</strong> Participantes</span>
                     </div>
-                    <div class="bg-gradient-to-r from-adistec-dark/90 to-adistec-blue2/50 backdrop-blur border border-adistec-blue1/80 px-4 py-2 rounded-xl flex items-center gap-2 shadow-inner">
+                    <div class="bg-adistec-dark/80 backdrop-blur border border-adistec-blue1/40 px-4 py-2 rounded-xl flex items-center gap-2 shadow-inner">
                         <i class="fas fa-calendar-alt text-adistec-cyan1"></i>
                         <span>Finaliza: <strong>Abril 02, 2027</strong></span>
                     </div>
-                    <div class="bg-gradient-to-r from-adistec-dark/90 to-adistec-blue2/50 backdrop-blur border border-adistec-blue1/80 px-4 py-2 rounded-xl flex items-center gap-2 shadow-inner">
+                    <div class="bg-adistec-dark/80 backdrop-blur border border-adistec-blue1/40 px-4 py-2 rounded-xl flex items-center gap-2 shadow-inner">
                         <i class="fas fa-bolt text-adistec-cyan3"></i>
                         <span>Actualización en Vivo</span>
                     </div>
@@ -106,231 +101,34 @@
             </div>
         </section>     
         
-        <!-- Sección de Premios con Gradientes Direccionales -->
+        <!-- Sección de Premios con balance de tonos -->
         <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <!-- 1er Lugar (Gradiente Cyan III a Azul I) -->
-            <div class="bg-gradient-to-br from-adistec-cyan3/25 via-adistec-blue1/40 to-adistec-dark border border-adistec-cyan3/60 rounded-2xl p-6 relative overflow-hidden glow-gold group hover:-translate-y-1 transition-all shadow-xl">
+            <!-- 1er Lugar -->
+            <div class="bg-gradient-to-br from-adistec-blue1/40 via-adistec-blue2/30 to-adistec-dark border border-adistec-cyan3/50 rounded-2xl p-6 relative overflow-hidden glow-gold group hover:-translate-y-1 transition-all shadow-xl">
                 <div class="absolute -right-4 -bottom-4 text-adistec-cyan3/10 text-8xl font-black">1</div>
-                <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-adistec-cyan3/30 to-adistec-cyan1/30 text-adistec-cyan3 flex items-center justify-center text-2xl font-bold mb-4 shadow-sm border border-adistec-cyan3/40">
+                <div class="w-12 h-12 rounded-xl bg-adistec-cyan3/20 text-adistec-cyan3 flex items-center justify-center text-2xl font-bold mb-4 shadow-sm border border-adistec-cyan3/30">
                     🥇
                 </div>
-                <h3 class="text-xl font-bold bg-gradient-to-r from-adistec-cyan3 to-white bg-clip-text text-transparent">Categoria Master Expert</h3>
+                <h3 class="text-xl font-bold text-adistec-cyan3">1er Lugar - Campeón</h3>
                 <p class="text-slate-200 text-sm mt-2 font-medium">Pase al Explore 2027</p>
                 <p class="text-slate-400 text-xs mt-1">*Acorde a términos y condiciones del programa.</p>
             </div>
 
-            <!-- 2do Lugar (Gradiente Cyan I a Azul II) -->
-            <div class="bg-gradient-to-br from-adistec-cyan1/25 via-adistec-blue2/40 to-adistec-dark border border-adistec-cyan1/50 rounded-2xl p-6 relative overflow-hidden glow-silver group hover:-translate-y-1 transition-all shadow-xl">
+            <!-- 2do Lugar -->
+            <div class="bg-gradient-to-br from-adistec-blue1/30 via-adistec-blue2/20 to-adistec-dark border border-adistec-cyan1/40 rounded-2xl p-6 relative overflow-hidden glow-silver group hover:-translate-y-1 transition-all shadow-xl">
                 <div class="absolute -right-4 -bottom-4 text-adistec-cyan1/10 text-8xl font-black">2</div>
-                <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-adistec-cyan1/30 to-adistec-cyan2/30 text-adistec-cyan1 flex items-center justify-center text-2xl font-bold mb-4 shadow-sm border border-adistec-cyan1/40">
+                <div class="w-12 h-12 rounded-xl bg-adistec-cyan1/20 text-adistec-cyan1 flex items-center justify-center text-2xl font-bold mb-4 shadow-sm border border-adistec-cyan1/30">
                     🥈
                 </div>
-                <h3 class="text-xl font-bold bg-gradient-to-r from-adistec-cyan1 to-white bg-clip-text text-transparent">Categoria Specialist Expert</h3>
+                <h3 class="text-xl font-bold text-adistec-cyan1">2do Lugar - Subcampeón</h3>
                 <p class="text-slate-200 text-sm mt-2 font-medium">$250 USD</p>
                 <p class="text-slate-400 text-xs mt-1">*Acorde a términos y condiciones del programa.</p>
             </div>
 
-            <!-- 3er Lugar (Gradiente Cyan II a Azul I) -->
-            <div class="bg-gradient-to-br from-adistec-cyan2/25 via-adistec-blue1/40 to-adistec-dark border border-adistec-cyan2/50 rounded-2xl p-6 relative overflow-hidden glow-bronze group hover:-translate-y-1 transition-all shadow-xl">
+            <!-- 3er Lugar -->
+            <div class="bg-gradient-to-br from-adistec-blue2/30 via-adistec-dark to-adistec-dark border border-adistec-cyan2/40 rounded-2xl p-6 relative overflow-hidden glow-bronze group hover:-translate-y-1 transition-all shadow-xl">
                 <div class="absolute -right-4 -bottom-4 text-adistec-cyan2/10 text-8xl font-black">3</div>
-                <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-adistec-cyan2/30 to-adistec-blue1/40 text-adistec-cyan2 flex items-center justify-center text-2xl font-bold mb-4 shadow-sm border border-adistec-cyan2/40">
+                <div class="w-12 h-12 rounded-xl bg-adistec-cyan2/20 text-adistec-cyan2 flex items-center justify-center text-2xl font-bold mb-4 shadow-sm border border-adistec-cyan2/30">
                     🥉
                 </div>
-                <h3 class="text-xl font-bold bg-gradient-to-r from-adistec-cyan2 to-slate-200 bg-clip-text text-transparent">Categoria Fundaments Expert</h3>
-                <p class="text-slate-200 text-sm mt-2 font-medium">$200 USD</p>
-                <p class="text-slate-400 text-xs mt-1">*Acorde a términos y condiciones del programa.</p>
-            </div>
-        </section>
-
-        <!-- Tabla y Buscador -->
-        <section class="bg-gradient-to-b from-adistec-blue1/30 via-adistec-dark to-adistec-dark backdrop-blur border border-adistec-blue1/60 rounded-3xl p-6 shadow-2xl">
-            <div class="flex flex-col sm:flex-row justify-between items-center gap-4 mb-6">
-                <h3 class="text-lg font-bold flex items-center gap-2 text-white">
-                    <i class="fas fa-list-ol text-adistec-cyan3"></i> Tabla de Posiciones
-                </h3>
-                <div class="w-full sm:w-72 relative">
-                    <i class="fas fa-search absolute left-3.5 top-1/2 -translate-y-1/2 text-adistec-cyan1 text-sm"></i>
-                    <input type="text" id="searchInput" oninput="filterPlayers()" placeholder="Buscar participante..." 
-                           class="w-full bg-adistec-dark border border-adistec-blue1/80 rounded-xl pl-10 pr-4 py-2 text-sm text-slate-200 focus:outline-none focus:border-adistec-cyan3 shadow-inner">
-                </div>
-            </div>
-
-            <div class="overflow-x-auto">
-                <table class="w-full text-left border-collapse">
-                    <thead>
-                        <!-- Encabezado de tabla con gradiente horizontal -->
-                        <tr class="bg-gradient-to-r from-adistec-dark via-adistec-blue1/40 to-adistec-dark text-adistec-cyan3 text-xs uppercase tracking-wider border-b border-adistec-blue1/80">
-                            <th class="py-3.5 px-4 text-center">Pos</th>
-                            <th class="py-3.5 px-4">Participante</th>
-                            <th class="py-3.5 px-4 text-center">Estado</th>
-                            <th class="py-3.5 px-4 text-center">Puntos</th>
-                            <th class="py-3.5 px-4 text-center">Acciones Rápidas</th>
-                        </tr>
-                    </thead>
-                    <tbody id="leaderboardBody" class="divide-y divide-adistec-blue1/40 text-sm">
-                        <!-- Generado por JS -->
-                    </tbody>
-                </table>
-            </div>
-
-            <div id="noResults" class="hidden p-8 text-center text-slate-400">
-                <i class="fas fa-user-slash text-4xl mb-3 text-adistec-blue1"></i>
-                <p>No se encontraron participantes con ese nombre.</p>
-            </div>
-        </section>
-    </main>
-
-    <script>
-        const initialPlayers = [
-            { id: 1, name: "Carlos Mendoza", points: 0, wins: 0, status: "Activo", avatar: "https://i.pravatar.cc/150?img=11" },
-            { id: 2, name: "Sofia Ramírez", points: 0, wins: 0, status: "Activo", avatar: "https://i.pravatar.cc/150?img=5" },
-            { id: 3, name: "Alejandro Silva", points: 0, wins: 0, status: "Activo", avatar: "https://i.pravatar.cc/150?img=12" },
-            { id: 4, name: "Mariana Torres", points: 0, wins: 0, status: "Activo", avatar: "https://i.pravatar.cc/150?img=9" }
-        ];
-
-        let players = [];
-
-        function loadPlayers() {
-            const saved = localStorage.getItem('group_leaderboard_players');
-            if (saved) {
-                try {
-                    players = JSON.parse(saved);
-                } catch (e) {
-                    players = JSON.parse(JSON.stringify(initialPlayers));
-                }
-            } else {
-                players = JSON.parse(JSON.stringify(initialPlayers));
-            }
-            sortByPoints();
-        }
-
-        function savePlayers() {
-            localStorage.setItem('group_leaderboard_players', JSON.stringify(players));
-        }
-
-        function resetData() {
-            players = JSON.parse(JSON.stringify(initialPlayers));
-            savePlayers();
-            sortByPoints();
-        }
-
-        function sortByPoints() {
-            players.sort((a, b) => b.points - a.points);
-            savePlayers();
-            renderTable();
-        }
-
-        function modifyPoints(index, delta) {
-            players[index].points = Math.max(0, players[index].points + delta);
-            if(delta > 0) players[index].wins += 1;
-            sortByPoints();
-        }
-
-        function updatePointsDirectly(index, val) {
-            const num = parseInt(val, 10);
-            if (!isNaN(num)) {
-                players[index].points = Math.max(0, num);
-                sortByPoints();
-            }
-        }
-
-        function getRankBadge(rank) {
-            if (rank === 1) return '<span class="text-xl inline-block" title="Oro">🥇</span>';
-            if (rank === 2) return '<span class="text-xl inline-block" title="Plata">🥈</span>';
-            if (rank === 3) return '<span class="text-xl inline-block" title="Bronce">🥉</span>';
-            return `<span class="font-bold text-slate-400">#${rank}</span>`;
-        }
-
-        function getStatusBadge(status) {
-            return '<span class="px-2.5 py-0.5 rounded-full text-xs bg-gradient-to-r from-adistec-cyan1/20 to-adistec-cyan3/20 text-adistec-cyan3 border border-adistec-cyan3/30 font-medium">Activo</span>';
-        }
-
-        function renderTable() {
-            const tbody = document.getElementById('leaderboardBody');
-            const searchInputEl = document.getElementById('searchInput');
-            const searchVal = searchInputEl ? searchInputEl.value.toLowerCase() : '';
-            tbody.innerHTML = '';
-
-            let visibleCount = 0;
-
-            players.forEach((player, index) => {
-                if (!player.name.toLowerCase().includes(searchVal)) return;
-
-                visibleCount++;
-                const rank = index + 1;
-                const isTop3 = rank <= 3;
-                
-                // Gradientes específicos para resaltar los primeros tres lugares en la tabla
-                let bgHighlight = "hover:bg-gradient-to-r hover:from-adistec-blue1/10 hover:to-transparent";
-                if (rank === 1) bgHighlight = "bg-gradient-to-r from-adistec-cyan3/20 via-adistec-cyan1/10 to-transparent hover:from-adistec-cyan3/30";
-                if (rank === 2) bgHighlight = "bg-gradient-to-r from-adistec-cyan1/20 via-adistec-blue1/10 to-transparent hover:from-adistec-cyan1/30";
-                if (rank === 3) bgHighlight = "bg-gradient-to-r from-adistec-cyan2/20 via-adistec-blue2/10 to-transparent hover:from-adistec-cyan2/30";
-
-                const tr = document.createElement('tr');
-                tr.className = `transition-colors duration-150 ${bgHighlight}`;
-                tr.innerHTML = `
-                    <td class="py-3.5 px-4 text-center font-semibold">
-                        ${getRankBadge(rank)}
-                    </td>
-                    <td class="py-3.5 px-4">
-                        <div class="flex items-center gap-3">
-                            <img src="${player.avatar}" alt="${player.name}" 
-                                 onerror="this.src='https://placehold.co/100x100/003DA5/ffffff?text=${player.name.charAt(0)}'"
-                                 class="w-10 h-10 rounded-full object-cover border-2 ${isTop3 ? 'border-adistec-cyan3' : 'border-adistec-blue1'} shadow-sm">
-                            <div>
-                                <p class="font-bold text-slate-100">${player.name}</p>
-                                <p class="text-xs text-slate-400 sm:hidden">Puntos: ${player.points}</p>
-                            </div>
-                        </div>
-                    </td>
-                    <td class="py-3.5 px-4 text-center">
-                        ${getStatusBadge(player.status)}
-                    </td>
-                    <td class="py-3.5 px-4 text-center">
-                        <input type="number" value="${player.points}" 
-                               onchange="updatePointsDirectly(${index}, this.value)"
-                               class="w-20 bg-adistec-dark border border-adistec-blue1/80 rounded-lg px-2 py-1 text-center font-bold text-adistec-cyan3 focus:outline-none focus:border-adistec-cyan3 shadow-inner">
-                    </td>
-                    <td class="py-3.5 px-4 text-center">
-                        <div class="flex justify-center gap-1.5">
-                            <button onclick="modifyPoints(${index}, 10)" title="+10 Puntos" 
-                                    class="w-8 h-8 rounded-lg bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-400 font-bold flex items-center justify-center transition-all shadow-sm">
-                                +10
-                            </button>
-                            <button onclick="modifyPoints(${index}, 50)" title="+50 Puntos" 
-                                    class="w-8 h-8 rounded-lg bg-gradient-to-r from-adistec-cyan1/30 to-adistec-cyan3/30 hover:from-adistec-cyan1/50 hover:to-adistec-cyan3/50 text-adistec-cyan3 font-bold flex items-center justify-center transition-all shadow-sm border border-adistec-cyan3/40">
-                                +50
-                            </button>
-                            <button onclick="modifyPoints(${index}, -10)" title="-10 Puntos" 
-                                    class="w-8 h-8 rounded-lg bg-rose-500/20 hover:bg-rose-500/30 text-rose-400 font-bold flex items-center justify-center transition-all shadow-sm">
-                                -10
-                            </button>
-                        </div>
-                    </td>
-                `;
-                tbody.appendChild(tr);
-            });
-
-            const noResultsEl = document.getElementById('noResults');
-            if (noResultsEl) {
-                noResultsEl.classList.toggle('hidden', visibleCount > 0);
-            }
-        }
-
-        function filterPlayers() {
-            renderTable();
-        }
-
-        const themeToggleBtn = document.getElementById('themeToggle');
-        if (themeToggleBtn) {
-            themeToggleBtn.addEventListener('click', () => {
-                document.documentElement.classList.toggle('dark');
-            });
-        }
-
-        window.onload = function() {
-            loadPlayers();
-        };
-    </script>
-</body>
-</html>
+                <h3 class="text-xl font-bold text-adistec-cyan2">3er Lugar - Terc
