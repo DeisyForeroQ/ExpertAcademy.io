@@ -168,4 +168,161 @@
 
             <div id="noResults" class="hidden p-8 text-center text-slate-400">
                 <i class="fas fa-user-slash text-4xl mb-3 text-brand-600"></i>
-                <p>
+                <p>No se encontraron participantes con ese nombre.</p>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const initialPlayers = [
+            { id: 1, name: "Carlos Mendoza", points: 0, wins: 0, status: "Activo", avatar: "https://i.pravatar.cc/150?img=11" },
+            { id: 2, name: "Sofia Ramírez", points: 0, wins: 0, status: "Activo", avatar: "https://i.pravatar.cc/150?img=5" },
+            { id: 3, name: "Alejandro Silva", points: 0, wins: 0, status: "Activo", avatar: "https://i.pravatar.cc/150?img=12" },
+            { id: 4, name: "Mariana Torres", points: 0, wins: 0, status: "Activo", avatar: "https://i.pravatar.cc/150?img=9" }
+        ];
+
+        let players = [];
+
+        function loadPlayers() {
+            const saved = localStorage.getItem('group_leaderboard_players');
+            if (saved) {
+                try {
+                    players = JSON.parse(saved);
+                } catch (e) {
+                    players = JSON.parse(JSON.stringify(initialPlayers));
+                }
+            } else {
+                players = JSON.parse(JSON.stringify(initialPlayers));
+            }
+            sortByPoints();
+        }
+
+        function savePlayers() {
+            localStorage.setItem('group_leaderboard_players', JSON.stringify(players));
+        }
+
+        function resetData() {
+            players = JSON.parse(JSON.stringify(initialPlayers));
+            savePlayers();
+            sortByPoints();
+        }
+
+        function sortByPoints() {
+            players.sort((a, b) => b.points - a.points);
+            savePlayers();
+            renderTable();
+        }
+
+        function modifyPoints(index, delta) {
+            players[index].points = Math.max(0, players[index].points + delta);
+            if(delta > 0) players[index].wins += 1;
+            sortByPoints();
+        }
+
+        function updatePointsDirectly(index, val) {
+            const num = parseInt(val, 10);
+            if (!isNaN(num)) {
+                players[index].points = Math.max(0, num);
+                sortByPoints();
+            }
+        }
+
+        function getRankBadge(rank) {
+            if (rank === 1) return '<span class="text-xl inline-block" title="Oro">🥇</span>';
+            if (rank === 2) return '<span class="text-xl inline-block" title="Plata">🥈</span>';
+            if (rank === 3) return '<span class="text-xl inline-block" title="Bronce">🥉</span>';
+            return `<span class="font-bold text-slate-400">#${rank}</span>`;
+        }
+
+        function getStatusBadge(status) {
+            return '<span class="px-2.5 py-0.5 rounded-full text-xs bg-brand-cyan/15 text-brand-cyan border border-brand-cyan/30 font-medium">Activo</span>';
+        }
+
+        function renderTable() {
+            const tbody = document.getElementById('leaderboardBody');
+            const searchInputEl = document.getElementById('searchInput');
+            const searchVal = searchInputEl ? searchInputEl.value.toLowerCase() : '';
+            tbody.innerHTML = '';
+
+            let visibleCount = 0;
+
+            players.forEach((player, index) => {
+                if (!player.name.toLowerCase().includes(searchVal)) return;
+
+                visibleCount++;
+                const rank = index + 1;
+                const isTop3 = rank <= 3;
+                
+                let bgHighlight = "hover:bg-[#0c2761]/30";
+                if (rank === 1) bgHighlight = "bg-brand-cyan/10 hover:bg-brand-cyan/20";
+                if (rank === 2) bgHighlight = "bg-brand-500/10 hover:bg-brand-500/20";
+                if (rank === 3) bgHighlight = "bg-brand-600/10 hover:bg-brand-600/20";
+
+                const tr = document.createElement('tr');
+                tr.className = `transition-colors duration-150 ${bgHighlight}`;
+                tr.innerHTML = `
+                    <td class="py-3.5 px-4 text-center font-semibold">
+                        ${getRankBadge(rank)}
+                    </td>
+                    <td class="py-3.5 px-4">
+                        <div class="flex items-center gap-3">
+                            <img src="${player.avatar}" alt="${player.name}" 
+                                 onerror="this.src='https://placehold.co/100x100/0c2761/ffffff?text=${player.name.charAt(0)}'"
+                                 class="w-10 h-10 rounded-full object-cover border-2 ${isTop3 ? 'border-brand-cyan' : 'border-[#0c2761]'} shadow-sm">
+                            <div>
+                                <p class="font-bold text-slate-100">${player.name}</p>
+                                <p class="text-xs text-slate-400 sm:hidden">Puntos: ${player.points}</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="py-3.5 px-4 text-center">
+                        ${getStatusBadge(player.status)}
+                    </td>
+                    <td class="py-3.5 px-4 text-center">
+                        <input type="number" value="${player.points}" 
+                               onchange="updatePointsDirectly(${index}, this.value)"
+                               class="w-20 bg-[#03071e] border border-[#0c2761] rounded-lg px-2 py-1 text-center font-bold text-brand-cyan focus:outline-none focus:border-brand-cyan shadow-inner">
+                    </td>
+                    <td class="py-3.5 px-4 text-center">
+                        <div class="flex justify-center gap-1.5">
+                            <button onclick="modifyPoints(${index}, 10)" title="+10 Puntos" 
+                                    class="w-8 h-8 rounded-lg bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-400 font-bold flex items-center justify-center transition-all shadow-sm">
+                                +10
+                            </button>
+                            <button onclick="modifyPoints(${index}, 50)" title="+50 Puntos" 
+                                    class="w-8 h-8 rounded-lg bg-brand-cyan/20 hover:bg-brand-cyan/30 text-brand-cyan font-bold flex items-center justify-center transition-all shadow-sm">
+                                +50
+                            </button>
+                            <button onclick="modifyPoints(${index}, -10)" title="-10 Puntos" 
+                                    class="w-8 h-8 rounded-lg bg-rose-500/20 hover:bg-rose-500/30 text-rose-400 font-bold flex items-center justify-center transition-all shadow-sm">
+                                -10
+                            </button>
+                        </div>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            const noResultsEl = document.getElementById('noResults');
+            if (noResultsEl) {
+                noResultsEl.classList.toggle('hidden', visibleCount > 0);
+            }
+        }
+
+        function filterPlayers() {
+            renderTable();
+        }
+
+        const themeToggleBtn = document.getElementById('themeToggle');
+        if (themeToggleBtn) {
+            themeToggleBtn.addEventListener('click', () => {
+                document.documentElement.classList.toggle('dark');
+            });
+        }
+
+        window.onload = function() {
+            loadPlayers();
+        };
+    </script>
+</body>
+</html>
