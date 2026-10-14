@@ -131,4 +131,199 @@
                 <div class="w-12 h-12 rounded-xl bg-adistec-cyan2/20 text-adistec-cyan2 flex items-center justify-center text-2xl font-bold mb-4 shadow-sm border border-adistec-cyan2/30">
                     🥉
                 </div>
-                <h3 class="text-xl font-bold text-adistec-cyan2">3er Lugar - Terc
+                <h3 class="text-xl font-bold text-adistec-cyan2">3er Lugar - Tercer Puesto</h3>
+                <p class="text-slate-200 text-sm mt-2 font-medium">$200 USD</p>
+                <p class="text-slate-400 text-xs mt-1">*Acorde a términos y condiciones del programa.</p>
+            </div>
+        </section>
+
+        <!-- Tabla y Buscador -->
+        <section class="bg-adistec-blue2/20 backdrop-blur border border-adistec-blue1/40 rounded-3xl p-6 shadow-2xl">
+            <div class="flex flex-col sm:flex-row justify-between items-center gap-4 mb-6">
+                <h3 class="text-lg font-bold flex items-center gap-2 text-white">
+                    <i class="fas fa-list-ol text-adistec-cyan3"></i> Tabla de Posiciones
+                </h3>
+                <div class="w-full sm:w-72 relative">
+                    <i class="fas fa-search absolute left-3.5 top-1/2 -translate-y-1/2 text-adistec-cyan1 text-sm"></i>
+                    <input type="text" id="searchInput" oninput="filterPlayers()" placeholder="Buscar participante..." 
+                           class="w-full bg-adistec-dark border border-adistec-blue1/60 rounded-xl pl-10 pr-4 py-2 text-sm text-slate-200 focus:outline-none focus:border-adistec-cyan3 shadow-inner">
+                </div>
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-adistec-dark/90 text-adistec-cyan3 text-xs uppercase tracking-wider border-b border-adistec-blue1/50">
+                            <th class="py-3.5 px-4 text-center">Pos</th>
+                            <th class="py-3.5 px-4">Participante</th>
+                            <th class="py-3.5 px-4 text-center">Estado</th>
+                            <th class="py-3.5 px-4 text-center">Puntos</th>
+                            <th class="py-3.5 px-4 text-center">Acciones Rápidas</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leaderboardBody" class="divide-y divide-adistec-blue1/20 text-sm">
+                        <!-- Generado por JS -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="noResults" class="hidden p-8 text-center text-slate-400">
+                <i class="fas fa-user-slash text-4xl mb-3 text-adistec-blue1"></i>
+                <p>No se encontraron participantes con ese nombre.</p>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const initialPlayers = [
+            { id: 1, name: "Carlos Mendoza", points: 0, wins: 0, status: "Activo", avatar: "https://i.pravatar.cc/150?img=11" },
+            { id: 2, name: "Sofia Ramírez", points: 0, wins: 0, status: "Activo", avatar: "https://i.pravatar.cc/150?img=5" },
+            { id: 3, name: "Alejandro Silva", points: 0, wins: 0, status: "Activo", avatar: "https://i.pravatar.cc/150?img=12" },
+            { id: 4, name: "Mariana Torres", points: 0, wins: 0, status: "Activo", avatar: "https://i.pravatar.cc/150?img=9" }
+        ];
+
+        let players = [];
+
+        function loadPlayers() {
+            const saved = localStorage.getItem('group_leaderboard_players');
+            if (saved) {
+                try {
+                    players = JSON.parse(saved);
+                } catch (e) {
+                    players = JSON.parse(JSON.stringify(initialPlayers));
+                }
+            } else {
+                players = JSON.parse(JSON.stringify(initialPlayers));
+            }
+            sortByPoints();
+        }
+
+        function savePlayers() {
+            localStorage.setItem('group_leaderboard_players', JSON.stringify(players));
+        }
+
+        function resetData() {
+            players = JSON.parse(JSON.stringify(initialPlayers));
+            savePlayers();
+            sortByPoints();
+        }
+
+        function sortByPoints() {
+            players.sort((a, b) => b.points - a.points);
+            savePlayers();
+            renderTable();
+        }
+
+        function modifyPoints(index, delta) {
+            players[index].points = Math.max(0, players[index].points + delta);
+            if(delta > 0) players[index].wins += 1;
+            sortByPoints();
+        }
+
+        function updatePointsDirectly(index, val) {
+            const num = parseInt(val, 10);
+            if (!isNaN(num)) {
+                players[index].points = Math.max(0, num);
+                sortByPoints();
+            }
+        }
+
+        function getRankBadge(rank) {
+            if (rank === 1) return '<span class="text-xl inline-block" title="Oro">🥇</span>';
+            if (rank === 2) return '<span class="text-xl inline-block" title="Plata">🥈</span>';
+            if (rank === 3) return '<span class="text-xl inline-block" title="Bronce">🥉</span>';
+            return `<span class="font-bold text-slate-400">#${rank}</span>`;
+        }
+
+        function getStatusBadge(status) {
+            return '<span class="px-2.5 py-0.5 rounded-full text-xs bg-adistec-cyan1/15 text-adistec-cyan3 border border-adistec-cyan1/30 font-medium">Activo</span>';
+        }
+
+        function renderTable() {
+            const tbody = document.getElementById('leaderboardBody');
+            const searchInputEl = document.getElementById('searchInput');
+            const searchVal = searchInputEl ? searchInputEl.value.toLowerCase() : '';
+            tbody.innerHTML = '';
+
+            let visibleCount = 0;
+
+            players.forEach((player, index) => {
+                if (!player.name.toLowerCase().includes(searchVal)) return;
+
+                visibleCount++;
+                const rank = index + 1;
+                const isTop3 = rank <= 3;
+                
+                let bgHighlight = "hover:bg-adistec-blue1/10";
+                if (rank === 1) bgHighlight = "bg-adistec-cyan3/15 hover:bg-adistec-cyan3/25";
+                if (rank === 2) bgHighlight = "bg-adistec-cyan1/15 hover:bg-adistec-cyan1/25";
+                if (rank === 3) bgHighlight = "bg-adistec-cyan2/15 hover:bg-adistec-cyan2/25";
+
+                const tr = document.createElement('tr');
+                tr.className = `transition-colors duration-150 ${bgHighlight}`;
+                tr.innerHTML = `
+                    <td class="py-3.5 px-4 text-center font-semibold">
+                        ${getRankBadge(rank)}
+                    </td>
+                    <td class="py-3.5 px-4">
+                        <div class="flex items-center gap-3">
+                            <img src="${player.avatar}" alt="${player.name}" 
+                                 onerror="this.src='https://placehold.co/100x100/293EC4/ffffff?text=${player.name.charAt(0)}'"
+                                 class="w-10 h-10 rounded-full object-cover border-2 ${isTop3 ? 'border-adistec-cyan3' : 'border-adistec-blue1'} shadow-sm">
+                            <div>
+                                <p class="font-bold text-slate-100">${player.name}</p>
+                                <p class="text-xs text-slate-400 sm:hidden">Puntos: ${player.points}</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="py-3.5 px-4 text-center">
+                        ${getStatusBadge(player.status)}
+                    </td>
+                    <td class="py-3.5 px-4 text-center">
+                        <input type="number" value="${player.points}" 
+                               onchange="updatePointsDirectly(${index}, this.value)"
+                               class="w-20 bg-adistec-dark border border-adistec-blue1/60 rounded-lg px-2 py-1 text-center font-bold text-adistec-cyan3 focus:outline-none focus:border-adistec-cyan3 shadow-inner">
+                    </td>
+                    <td class="py-3.5 px-4 text-center">
+                        <div class="flex justify-center gap-1.5">
+                            <button onclick="modifyPoints(${index}, 10)" title="+10 Puntos" 
+                                    class="w-8 h-8 rounded-lg bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-400 font-bold flex items-center justify-center transition-all shadow-sm">
+                                +10
+                            </button>
+                            <button onclick="modifyPoints(${index}, 50)" title="+50 Puntos" 
+                                    class="w-8 h-8 rounded-lg bg-adistec-cyan1/20 hover:bg-adistec-cyan1/30 text-adistec-cyan3 font-bold flex items-center justify-center transition-all shadow-sm border border-adistec-cyan1/30">
+                                +50
+                            </button>
+                            <button onclick="modifyPoints(${index}, -10)" title="-10 Puntos" 
+                                    class="w-8 h-8 rounded-lg bg-rose-500/20 hover:bg-rose-500/30 text-rose-400 font-bold flex items-center justify-center transition-all shadow-sm">
+                                -10
+                            </button>
+                        </div>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            const noResultsEl = document.getElementById('noResults');
+            if (noResultsEl) {
+                noResultsEl.classList.toggle('hidden', visibleCount > 0);
+            }
+        }
+
+        function filterPlayers() {
+            renderTable();
+        }
+
+        const themeToggleBtn = document.getElementById('themeToggle');
+        if (themeToggleBtn) {
+            themeToggleBtn.addEventListener('click', () => {
+                document.documentElement.classList.toggle('dark');
+            });
+        }
+
+        window.onload = function() {
+            loadPlayers();
+        };
+    </script>
+</body>
+</html>
