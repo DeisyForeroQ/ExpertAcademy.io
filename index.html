@@ -291,4 +291,43 @@
                     <td class="py-3.5 px-4 text-center">
                         <div class="flex justify-center gap-1.5">
                             <button onclick="modifyPoints(${index}, 10)" title="+10 Puntos" 
-                                    class="w-8 h-8 rounded-
+                                    class="w-8 h-8 rounded-lg bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-400 font-bold flex items-center justify-center transition-all shadow-sm">
+                                +10
+                            </button>
+                            <button onclick="modifyPoints(${index}, 50)" title="+50 Puntos" 
+                                    class="w-8 h-8 rounded-lg bg-brand-cyan/20 hover:bg-brand-cyan/30 text-brand-cyan font-bold flex items-center justify-center transition-all shadow-sm">
+                                +50
+                            </button>
+                            <button onclick="modifyPoints(${index}, -10)" title="-10 Puntos" 
+                                    class="w-8 h-8 rounded-lg bg-rose-500/20 hover:bg-rose-500/30 text-rose-400 font-bold flex items-center justify-center transition-all shadow-sm">
+                                -10
+                            </button>
+                        </div>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            const noResultsEl = document.getElementById('noResults');
+            if (noResultsEl) {
+                noResultsEl.classList.toggle('hidden', visibleCount > 0);
+            }
+        }
+
+        function filterPlayers() {
+            renderTable();
+        }
+
+        const themeToggleBtn = document.getElementById('themeToggle');
+        if (themeToggleBtn) {
+            themeToggleBtn.addEventListener('click', () => {
+                document.documentElement.classList.toggle('dark');
+            });
+        }
+
+        window.onload = function() {
+            loadPlayers();
+        };
+    </script>
+</body>
+</html>
