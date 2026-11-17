@@ -31,6 +31,9 @@
         .glow-gold { box-shadow: 0 0 25px rgba(6, 229, 252, 0.35); }
         .glow-silver { box-shadow: 0 0 20px rgba(0, 163, 221, 0.25); }
         .glow-bronze { box-shadow: 0 0 20px rgba(0, 110, 179, 0.3); }
+        .admin-only { display: none !important; }
+        body.is-admin .admin-only { display: flex !important; }
+        body.is-admin .admin-only-inline { display: inline-block !important; }
     </style>
 </head>
 <body class="bg-adistec-dark text-slate-100 min-h-screen pb-12 transition-colors duration-300">
@@ -54,8 +57,13 @@
                     <i class="fas fa-sun text-lg hidden dark:block"></i>
                     <i class="fas fa-moon text-lg block dark:hidden"></i>
                 </button>
-                <button onclick="resetData()" class="text-xs sm:text-sm bg-adistec-blue2/30 hover:bg-adistec-blue2/60 text-slate-200 px-3 py-2 rounded-xl transition-all border border-adistec-blue2/50 flex items-center gap-1.5 shadow-sm">
-                    <i class="fas fa-undo text-adistec-cyan3"></i> <span class="hidden sm:inline">Reiniciar Datos</span>
+                <!-- Botón de Reiniciar (Solo Admin) -->
+                <button onclick="resetData()" class="admin-only text-xs sm:text-sm bg-rose-500/20 hover:bg-rose-500/40 text-rose-200 px-3 py-2 rounded-xl transition-all border border-rose-500/50 items-center gap-1.5 shadow-sm">
+                    <i class="fas fa-undo"></i> <span class="hidden sm:inline">Reiniciar Datos</span>
+                </button>
+                <!-- Botón de Acceso Admin / Cerrar Sesión Admin -->
+                <button id="adminAuthBtn" onclick="toggleAdminMode()" class="text-xs sm:text-sm bg-adistec-blue2/30 hover:bg-adistec-blue2/60 text-slate-200 px-3 py-2 rounded-xl transition-all border border-adistec-blue2/50 flex items-center gap-1.5 shadow-sm">
+                    <i class="fas fa-lock text-adistec-cyan3" id="adminIcon"></i> <span id="adminBtnText">Modo Admin</span>
                 </button>
             </div>
         </div>
@@ -101,36 +109,27 @@
             </div>
         </section>     
         
-        <!-- Sección de Premios con balance de tonos -->
+        <!-- Sección de Premios -->
         <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <!-- 1er Lugar -->
             <div class="bg-gradient-to-br from-adistec-blue1/40 via-adistec-blue2/30 to-adistec-dark border border-adistec-cyan3/50 rounded-2xl p-6 relative overflow-hidden glow-gold group hover:-translate-y-1 transition-all shadow-xl">
                 <div class="absolute -right-4 -bottom-4 text-adistec-cyan3/10 text-8xl font-black">1</div>
-                <div class="w-12 h-12 rounded-xl bg-adistec-cyan3/20 text-adistec-cyan3 flex items-center justify-center text-2xl font-bold mb-4 shadow-sm border border-adistec-cyan3/30">
-                    🥇
-                </div>
+                <div class="w-12 h-12 rounded-xl bg-adistec-cyan3/20 text-adistec-cyan3 flex items-center justify-center text-2xl font-bold mb-4 shadow-sm border border-adistec-cyan3/30">🥇</div>
                 <h3 class="text-xl font-bold text-adistec-cyan3">1er Lugar - Campeón</h3>
                 <p class="text-slate-200 text-sm mt-2 font-medium">Pase al Explore 2027</p>
                 <p class="text-slate-400 text-xs mt-1">*Acorde a términos y condiciones del programa.</p>
             </div>
 
-            <!-- 2do Lugar -->
             <div class="bg-gradient-to-br from-adistec-blue1/30 via-adistec-blue2/20 to-adistec-dark border border-adistec-cyan1/40 rounded-2xl p-6 relative overflow-hidden glow-silver group hover:-translate-y-1 transition-all shadow-xl">
                 <div class="absolute -right-4 -bottom-4 text-adistec-cyan1/10 text-8xl font-black">2</div>
-                <div class="w-12 h-12 rounded-xl bg-adistec-cyan1/20 text-adistec-cyan1 flex items-center justify-center text-2xl font-bold mb-4 shadow-sm border border-adistec-cyan1/30">
-                    🥈
-                </div>
+                <div class="w-12 h-12 rounded-xl bg-adistec-cyan1/20 text-adistec-cyan1 flex items-center justify-center text-2xl font-bold mb-4 shadow-sm border border-adistec-cyan1/30">🥈</div>
                 <h3 class="text-xl font-bold text-adistec-cyan1">2do Lugar - Subcampeón</h3>
                 <p class="text-slate-200 text-sm mt-2 font-medium">$250 USD</p>
                 <p class="text-slate-400 text-xs mt-1">*Acorde a términos y condiciones del programa.</p>
             </div>
 
-            <!-- 3er Lugar -->
             <div class="bg-gradient-to-br from-adistec-blue2/30 via-adistec-dark to-adistec-dark border border-adistec-cyan2/40 rounded-2xl p-6 relative overflow-hidden glow-bronze group hover:-translate-y-1 transition-all shadow-xl">
                 <div class="absolute -right-4 -bottom-4 text-adistec-cyan2/10 text-8xl font-black">3</div>
-                <div class="w-12 h-12 rounded-xl bg-adistec-cyan2/20 text-adistec-cyan2 flex items-center justify-center text-2xl font-bold mb-4 shadow-sm border border-adistec-cyan2/30">
-                    🥉
-                </div>
+                <div class="w-12 h-12 rounded-xl bg-adistec-cyan2/20 text-adistec-cyan2 flex items-center justify-center text-2xl font-bold mb-4 shadow-sm border border-adistec-cyan2/30">🥉</div>
                 <h3 class="text-xl font-bold text-adistec-cyan2">3er Lugar - Tercer Puesto</h3>
                 <p class="text-slate-200 text-sm mt-2 font-medium">$200 USD</p>
                 <p class="text-slate-400 text-xs mt-1">*Acorde a términos y condiciones del programa.</p>
@@ -158,7 +157,7 @@
                             <th class="py-3.5 px-4">Participante</th>
                             <th class="py-3.5 px-4 text-center">Estado</th>
                             <th class="py-3.5 px-4 text-center">Puntos</th>
-                            <th class="py-3.5 px-4 text-center">Acciones Rápidas</th>
+                            <th class="py-3.5 px-4 text-center admin-only">Acciones Rápidas</th>
                         </tr>
                     </thead>
                     <tbody id="leaderboardBody" class="divide-y divide-adistec-blue1/20 text-sm">
@@ -175,14 +174,18 @@
     </main>
 
     <script>
+        // CONTRASEÑA DE ADMINISTRADOR (Puedes cambiarla aquí por la que prefieras)
+        const ADMIN_PASSWORD = "Adistec2026*";
+
         const initialPlayers = [
             { id: 1, name: "Carlos Mendoza", points: 0, wins: 0, status: "Activo", avatar: "" },
-            { id: 2, name: "Sofia Ramírez", points: 0, wins: 0, status: "Activo", avatar: "https://i.pravatar.cc/150?img=5" },
+            { id: 2, name: "Sofia Ramírez", points: 0, wins: 0, status: "https://i.pravatar.cc/150?img=5" },
             { id: 3, name: "Alejandro Silva", points: 0, wins: 0, status: "Activo", avatar: "https://i.pravatar.cc/150?img=12" },
             { id: 4, name: "Mariana Torres", points: 0, wins: 0, status: "Activo", avatar: "https://i.pravatar.cc/150?img=9" }
         ];
 
         let players = [];
+        let isAdmin = false;
 
         function loadPlayers() {
             const saved = localStorage.getItem('group_leaderboard_players');
@@ -203,9 +206,12 @@
         }
 
         function resetData() {
-            players = JSON.parse(JSON.stringify(initialPlayers));
-            savePlayers();
-            sortByPoints();
+            if (!isAdmin) return;
+            if (confirm('¿Estás seguro de reiniciar todos los puntos a cero?')) {
+                players = JSON.parse(JSON.stringify(initialPlayers));
+                savePlayers();
+                sortByPoints();
+            }
         }
 
         function sortByPoints() {
@@ -215,16 +221,43 @@
         }
 
         function modifyPoints(index, delta) {
+            if (!isAdmin) return;
             players[index].points = Math.max(0, players[index].points + delta);
             if(delta > 0) players[index].wins += 1;
             sortByPoints();
         }
 
         function updatePointsDirectly(index, val) {
+            if (!isAdmin) return;
             const num = parseInt(val, 10);
             if (!isNaN(num)) {
                 players[index].points = Math.max(0, num);
                 sortByPoints();
+            }
+        }
+
+        function toggleAdminMode() {
+            if (isAdmin) {
+                // Cerrar sesión de admin
+                isAdmin = false;
+                document.body.classList.remove('is-admin');
+                document.getElementById('adminBtnText').innerText = "Modo Admin";
+                document.getElementById('adminIcon').className = "fas fa-lock text-adistec-cyan3";
+                renderTable();
+                alert('Has salido del modo administrador.');
+            } else {
+                // Pedir contraseña
+                const pass = prompt("Introduce la contraseña de administrador:");
+                if (pass === ADMIN_PASSWORD) {
+                    isAdmin = true;
+                    document.body.classList.add('is-admin');
+                    document.getElementById('adminBtnText').innerText = "Salir Admin";
+                    document.getElementById('adminIcon').className = "fas fa-unlock text-emerald-400";
+                    renderTable();
+                    alert('¡Acceso concedido! Ahora puedes editar los puntos.');
+                } else if (pass !== null) {
+                    alert('Contraseña incorrecta.');
+                }
             }
         }
 
@@ -261,6 +294,21 @@
 
                 const tr = document.createElement('tr');
                 tr.className = `transition-colors duration-150 ${bgHighlight}`;
+                
+                // Renderizado condicional de la celda de puntos (Input editable si es admin, texto fijo si es visor)
+                let pointsCellHTML = '';
+                if (isAdmin) {
+                    pointsCellHTML = `
+                        <input type="number" value="${player.points}" 
+                               onchange="updatePointsDirectly(${index}, this.value)"
+                               class="w-20 bg-adistec-dark border border-adistec-blue1/60 rounded-lg px-2 py-1 text-center font-bold text-adistec-cyan3 focus:outline-none focus:border-adistec-cyan3 shadow-inner">
+                    `;
+                } else {
+                    pointsCellHTML = `
+                        <span class="font-black text-adistec-cyan3 text-base">${player.points} pts</span>
+                    `;
+                }
+
                 tr.innerHTML = `
                     <td class="py-3.5 px-4 text-center font-semibold">
                         ${getRankBadge(rank)}
@@ -280,11 +328,9 @@
                         ${getStatusBadge(player.status)}
                     </td>
                     <td class="py-3.5 px-4 text-center">
-                        <input type="number" value="${player.points}" 
-                               onchange="updatePointsDirectly(${index}, this.value)"
-                               class="w-20 bg-adistec-dark border border-adistec-blue1/60 rounded-lg px-2 py-1 text-center font-bold text-adistec-cyan3 focus:outline-none focus:border-adistec-cyan3 shadow-inner">
+                        ${pointsCellHTML}
                     </td>
-                    <td class="py-3.5 px-4 text-center">
+                    <td class="py-3.5 px-4 text-center admin-only" style="display: none;">
                         <div class="flex justify-center gap-1.5">
                             <button onclick="modifyPoints(${index}, 10)" title="+10 Puntos" 
                                     class="w-8 h-8 rounded-lg bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-400 font-bold flex items-center justify-center transition-all shadow-sm">
