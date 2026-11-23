@@ -17,7 +17,7 @@
                             cyan1: '#00A3DD', // Cyan I
                             cyan2: '#006EB3', // Cyan II
                             cyan3: '#06E5FC', // Cyan III
-                            dark: '#0a0836',   // Fondo profundo equilibrado basado en tu tono
+                            dark: '#0a0836',   // Fondo profundo equilibrado
                         }
                     }
                 }
@@ -36,7 +36,7 @@
         body.is-admin .admin-only-inline { display: inline-block !important; }
     </style>
 </head>
-<body class="bg-adistec-dark text-slate-100 min-h-screen pb-12 transition-colors duration-300">
+<body class="bg-adistec-dark text-slate-100 min-h-screen pb-16 transition-colors duration-300">
 
     <!-- Navbar -->
     <nav class="sticky top-0 z-50 backdrop-blur-md bg-adistec-dark/95 border-b border-adistec-blue2/40 px-4 py-3 shadow-xl">
@@ -69,7 +69,7 @@
         </div>
     </nav>
 
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 mt-6 space-y-8">
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 mt-6 space-y-10">
         <!-- Hero Section -->
         <section class="relative rounded-3xl overflow-hidden bg-gradient-to-br from-adistec-blue1/30 via-adistec-blue2/20 to-adistec-dark border border-adistec-blue1/40 shadow-2xl">
             <div class="absolute inset-0 z-0">
@@ -169,6 +169,217 @@
             <div id="noResults" class="hidden p-8 text-center text-slate-400">
                 <i class="fas fa-user-slash text-4xl mb-3 text-adistec-blue1"></i>
                 <p>No se encontraron participantes con ese nombre.</p>
+            </div>
+        </section>
+
+        <!-- TÉRMINOS Y CONDICIONES DEL PROGRAMA -->
+        <section id="terminos-condiciones" class="bg-adistec-blue2/20 backdrop-blur border border-adistec-blue1/40 rounded-3xl p-6 sm:p-8 shadow-2xl space-y-8">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-adistec-blue1/40 pb-5">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-widest text-adistec-cyan3 flex items-center gap-2">
+                        <i class="fas fa-file-contract"></i> Reglas Oficiales e Incentivos
+                    </span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-1">
+                        Términos y Condiciones del Programa
+                    </h2>
+                </div>
+                <div class="text-xs text-slate-300 bg-adistec-dark/80 border border-adistec-blue1/50 px-4 py-2.5 rounded-xl flex items-center gap-2">
+                    <i class="fas fa-clock text-adistec-cyan1"></i>
+                    <span>Corte de certificaciones y badges: <strong class="text-adistec-cyan3">20 de Marzo</strong></span>
+                </div>
+            </div>
+
+            <!-- CATEGORÍA 1: EXPLORER -->
+            <div class="bg-adistec-dark/60 border border-adistec-cyan1/30 rounded-2xl overflow-hidden shadow-lg">
+                <div class="bg-gradient-to-r from-adistec-blue1/50 to-adistec-cyan2/30 px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-adistec-cyan1/30">
+                    <div class="flex items-center gap-3">
+                        <span class="w-9 h-9 rounded-lg bg-adistec-cyan1/20 border border-adistec-cyan1/40 text-adistec-cyan3 flex items-center justify-center font-bold">
+                            <i class="fas fa-compass"></i>
+                        </span>
+                        <div>
+                            <h3 class="text-lg font-bold text-white">Categoría Explorer</h3>
+                            <p class="text-xs text-slate-300">Nivel inicial y generación de oportunidades</p>
+                        </div>
+                    </div>
+                    <span class="px-3.5 py-1 rounded-full bg-adistec-cyan1/20 border border-adistec-cyan1/40 text-adistec-cyan3 font-bold text-sm self-start sm:self-auto">
+                        Total: 100 Puntos
+                    </span>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse text-sm">
+                        <thead>
+                            <tr class="bg-adistec-dark/90 text-adistec-cyan1 text-xs uppercase tracking-wider border-b border-adistec-blue1/40">
+                                <th class="py-3 px-6 w-2/5">Contenido / Actividad</th>
+                                <th class="py-3 px-4 text-center w-24">Puntos</th>
+                                <th class="py-3 px-6">Términos y Condiciones</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-adistec-blue1/20">
+                            <tr class="hover:bg-adistec-blue1/10 transition-colors">
+                                <td class="py-3.5 px-6 font-medium text-slate-100">Certificación: Sales and Presales Proven</td>
+                                <td class="py-3.5 px-4 text-center font-bold text-adistec-cyan3">30</td>
+                                <td class="py-3.5 px-6 text-slate-300">Antes del 20 de Marzo deben compartir las Certificaciones Presales, Architecture o Implement.</td>
+                            </tr>
+                            <tr class="hover:bg-adistec-blue1/10 transition-colors">
+                                <td class="py-3.5 px-6 font-medium text-slate-100">Ejecución de mínimo 2 presentaciones a clientes finales</td>
+                                <td class="py-3.5 px-4 text-center font-bold text-adistec-cyan3">15</td>
+                                <td class="py-3.5 px-6 text-slate-300">En las presentaciones y/o Workshops deben incluir a Adistec o Broadcom como asistentes para evaluación antes de corte 20 de Marzo.</td>
+                            </tr>
+                            <tr class="hover:bg-adistec-blue1/10 transition-colors">
+                                <td class="py-3.5 px-6 font-medium text-slate-100">Asistencia: Mínimo 60% a encuentros/capacitaciones</td>
+                                <td class="py-3.5 px-4 text-center font-bold text-adistec-cyan3">20</td>
+                                <td class="py-3.5 px-6 text-slate-300">Asistencia será evaluada por Broadcom y Adistec (Si la sesión es de 1 hora deben estar mínimo 40 min).</td>
+                            </tr>
+                            <tr class="hover:bg-adistec-blue1/10 transition-colors">
+                                <td class="py-3.5 px-6 font-medium text-slate-100">Generación de mínimo 3 leads calificados (pipeline básico monto 25K a 60K USD)</td>
+                                <td class="py-3.5 px-4 text-center font-bold text-adistec-cyan3">35</td>
+                                <td class="py-3.5 px-6 text-slate-300">Aplica para negocios totalmente nuevos que no se crucen con leads Comerciales.</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr class="bg-adistec-cyan1/10 border-t border-adistec-cyan1/30">
+                                <td class="py-3.5 px-6 font-bold text-adistec-cyan3 uppercase text-xs tracking-wider">Incentivo Categoría Explorer</td>
+                                <td class="py-3.5 px-4 text-center font-black text-white">100</td>
+                                <td class="py-3.5 px-6 font-semibold text-adistec-cyan3">
+                                    <i class="fas fa-gift mr-1.5"></i> Para los primeros 3 que cumplan con esta categoría se les incentiva con el Bono 680.000.
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+
+            <!-- CATEGORÍA 2: SPECIALIST -->
+            <div class="bg-adistec-dark/60 border border-adistec-cyan2/40 rounded-2xl overflow-hidden shadow-lg">
+                <div class="bg-gradient-to-r from-adistec-blue1/60 to-adistec-cyan1/30 px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-adistec-cyan2/40">
+                    <div class="flex items-center gap-3">
+                        <span class="w-9 h-9 rounded-lg bg-adistec-cyan2/30 border border-adistec-cyan1/40 text-adistec-cyan3 flex items-center justify-center font-bold">
+                            <i class="fas fa-award"></i>
+                        </span>
+                        <div>
+                            <h3 class="text-lg font-bold text-white">Categoría Specialist</h3>
+                            <p class="text-xs text-slate-300">Especialización técnica avanzada y planes de adopción</p>
+                        </div>
+                    </div>
+                    <span class="px-3.5 py-1 rounded-full bg-adistec-cyan2/30 border border-adistec-cyan1/40 text-adistec-cyan3 font-bold text-sm self-start sm:self-auto">
+                        Total: 300 Puntos
+                    </span>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse text-sm">
+                        <thead>
+                            <tr class="bg-adistec-dark/90 text-adistec-cyan1 text-xs uppercase tracking-wider border-b border-adistec-blue1/40">
+                                <th class="py-3 px-6 w-2/5">Contenido / Actividad</th>
+                                <th class="py-3 px-4 text-center w-24">Puntos</th>
+                                <th class="py-3 px-6">Términos y Condiciones</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-adistec-blue1/20">
+                            <tr class="hover:bg-adistec-blue1/10 transition-colors">
+                                <td class="py-3.5 px-6 font-medium text-slate-100">Certificación VCAP-VCF Architect or Implement (Proven)</td>
+                                <td class="py-3.5 px-4 text-center font-bold text-adistec-cyan3">100</td>
+                                <td class="py-3.5 px-6 text-slate-300">Antes del 20 de Marzo deben compartir las Certificaciones Presales, Architecture o Implement.</td>
+                            </tr>
+                            <tr class="hover:bg-adistec-blue1/10 transition-colors">
+                                <td class="py-3.5 px-6 font-medium text-slate-100">Ejecución de mínimo 3 presentaciones a clientes finales</td>
+                                <td class="py-3.5 px-4 text-center font-bold text-adistec-cyan3">50</td>
+                                <td class="py-3.5 px-6 text-slate-300">En las presentaciones y/o Workshops deben incluir a Adistec o Broadcom como asistentes para evaluación.</td>
+                            </tr>
+                            <tr class="hover:bg-adistec-blue1/10 transition-colors">
+                                <td class="py-3.5 px-6 font-medium text-slate-100">Asistencia: Mínimo 80% a encuentros/capacitaciones</td>
+                                <td class="py-3.5 px-4 text-center font-bold text-adistec-cyan3">70</td>
+                                <td class="py-3.5 px-6 text-slate-300">Asistencia será evaluada por Broadcom y Adistec (Si la sesión es de 1 hora deben estar mínimo 40 min).</td>
+                            </tr>
+                            <tr class="hover:bg-adistec-blue1/10 transition-colors">
+                                <td class="py-3.5 px-6 font-medium text-slate-100">Propuesta Plan de Adopción (mínimo 5 clientes)</td>
+                                <td class="py-3.5 px-4 text-center font-bold text-adistec-cyan3">80</td>
+                                <td class="py-3.5 px-6 text-slate-300">Deben ser enviadas a Adistec y Broadcom para su evaluación.</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr class="bg-adistec-cyan2/15 border-t border-adistec-cyan1/30">
+                                <td class="py-3.5 px-6 font-bold text-adistec-cyan3 uppercase text-xs tracking-wider">Incentivo Categoría Specialist</td>
+                                <td class="py-3.5 px-4 text-center font-black text-white">300</td>
+                                <td class="py-3.5 px-6 font-semibold text-adistec-cyan3">
+                                    <i class="fas fa-ticket-alt mr-1.5"></i> Para los primeros 3 que cumplan con esta categoría se les incentiva devolviendo el Voucher.
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+
+            <!-- CATEGORÍA 3: MASTER -->
+            <div class="bg-adistec-dark/60 border border-adistec-cyan3/40 rounded-2xl overflow-hidden shadow-lg">
+                <div class="bg-gradient-to-r from-adistec-blue1/70 via-adistec-blue2/60 to-adistec-cyan1/40 px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-adistec-cyan3/40">
+                    <div class="flex items-center gap-3">
+                        <span class="w-9 h-9 rounded-lg bg-adistec-cyan3/20 border border-adistec-cyan3/50 text-adistec-cyan3 flex items-center justify-center font-bold">
+                            <i class="fas fa-crown"></i>
+                        </span>
+                        <div>
+                            <h3 class="text-lg font-bold text-white">Categoría Master</h3>
+                            <p class="text-xs text-slate-300">Nivel máximo Knight, cierre de negocios y cuentas estratégicas</p>
+                        </div>
+                    </div>
+                    <span class="px-3.5 py-1 rounded-full bg-adistec-cyan3/20 border border-adistec-cyan3/50 text-adistec-cyan3 font-bold text-sm self-start sm:self-auto">
+                        Total: 600 Puntos
+                    </span>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse text-sm">
+                        <thead>
+                            <tr class="bg-adistec-dark/90 text-adistec-cyan3 text-xs uppercase tracking-wider border-b border-adistec-blue1/40">
+                                <th class="py-3 px-6 w-2/5">Contenido / Actividad</th>
+                                <th class="py-3 px-4 text-center w-24">Puntos</th>
+                                <th class="py-3 px-6">Términos y Condiciones</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-adistec-blue1/20">
+                            <tr class="hover:bg-adistec-blue1/10 transition-colors">
+                                <td class="py-3.5 px-6 font-medium text-slate-100">Obtener Nivel máximo Knight</td>
+                                <td class="py-3.5 px-4 text-center font-bold text-adistec-cyan3">200</td>
+                                <td class="py-3.5 px-6 text-slate-300">Antes del 20 de Marzo deben compartir el Badge de Knight.</td>
+                            </tr>
+                            <tr class="hover:bg-adistec-blue1/10 transition-colors">
+                                <td class="py-3.5 px-6 font-medium text-slate-100">Crecimiento y cierre de mínimo 2 negocios con Addons (vDefend / SR) <span class="text-xs text-adistec-cyan1 block sm:inline">// Para los que ya son Knight</span></td>
+                                <td class="py-3.5 px-4 text-center font-bold text-adistec-cyan3">200</td>
+                                <td class="py-3.5 px-6 text-slate-300">Deben ser enviadas a Adistec y Broadcom para su evaluación.</td>
+                            </tr>
+                            <tr class="hover:bg-adistec-blue1/10 transition-colors">
+                                <td class="py-3.5 px-6 font-medium text-slate-100">Ejecución de mínimo 4 presentaciones a clientes finales o 1 Workshop con clientes Finales</td>
+                                <td class="py-3.5 px-4 text-center font-bold text-adistec-cyan3">100</td>
+                                <td class="py-3.5 px-6 text-slate-300">En las presentaciones y/o Workshops deben incluir a Adistec o Broadcom como asistentes para evaluación.</td>
+                            </tr>
+                            <tr class="hover:bg-adistec-blue1/10 transition-colors">
+                                <td class="py-3.5 px-6 font-medium text-slate-100">Asistencia: Mínimo 90% a encuentros/capacitaciones</td>
+                                <td class="py-3.5 px-4 text-center font-bold text-adistec-cyan3">80</td>
+                                <td class="py-3.5 px-6 text-slate-300">Asistencia será evaluada por Broadcom y Adistec (Si la sesión es de 1 hora deben estar mínimo 40 min).</td>
+                            </tr>
+                            <tr class="hover:bg-adistec-blue1/10 transition-colors">
+                                <td class="py-3.5 px-6 font-medium text-slate-100">Apoyo cierre de Negocios (200k a 500k USD)</td>
+                                <td class="py-3.5 px-4 text-center font-bold text-adistec-cyan3">120</td>
+                                <td class="py-3.5 px-6 text-slate-300">Deben ser enviadas a Adistec y Broadcom para su evaluación.</td>
+                            </tr>
+                            <tr class="hover:bg-adistec-blue1/10 transition-colors">
+                                <td class="py-3.5 px-6 font-medium text-slate-100">Ejecución de Plan de Adopción cuentas Estratégicas (mínimo 5 clientes)</td>
+                                <td class="py-3.5 px-4 text-center font-bold text-adistec-cyan3">100</td>
+                                <td class="py-3.5 px-6 text-slate-300">Deben ser enviadas a Adistec y Broadcom para su evaluación.</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr class="bg-adistec-cyan3/15 border-t border-adistec-cyan3/40">
+                                <td class="py-3.5 px-6 font-bold text-adistec-cyan3 uppercase text-xs tracking-wider">Incentivo Categoría Master</td>
+                                <td class="py-3.5 px-4 text-center font-black text-white">600</td>
+                                <td class="py-3.5 px-6 font-semibold text-adistec-cyan3">
+                                    <i class="fas fa-plane-departure mr-1.5"></i> Para los primeros 2 que cumplan con esta categoría se les incentiva con un Pase al Explore <span class="text-slate-300 font-normal">(no incluye tiquetes ni estadía)</span>.
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
             </div>
         </section>
     </main>
@@ -295,7 +506,7 @@
                 const tr = document.createElement('tr');
                 tr.className = `transition-colors duration-150 ${bgHighlight}`;
                 
-                // Renderizado condicional de la celda de puntos (Input editable si es admin, texto fijo si es visor)
+                // Renderizado condicional de la celda de puntos
                 let pointsCellHTML = '';
                 if (isAdmin) {
                     pointsCellHTML = `
