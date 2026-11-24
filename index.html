@@ -109,7 +109,7 @@
             </div>
         </section>     
         
-<!-- Sección de Premios -->
+        <!-- Sección de Premios -->
         <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <!-- 1er Lugar - Campeón (Master Expert) -->
             <div class="bg-gradient-to-br from-adistec-blue1/40 via-adistec-blue2/30 to-adistec-dark border border-adistec-cyan3/50 rounded-2xl p-6 relative overflow-hidden glow-gold group hover:-translate-y-1 transition-all shadow-xl flex flex-col justify-between min-h-[370px]">
@@ -187,7 +187,7 @@
                             <th class="py-3.5 px-4">Participante</th>
                             <th class="py-3.5 px-4 text-center">Estado</th>
                             <th class="py-3.5 px-4 text-center">Puntos</th>
-                            <th class="py-3.5 px-4 text-center admin-only">Acciones Rápidas</th>
+                            <th class="py-3.5 px-4 text-center admin-only justify-center">Acciones Rápidas</th>
                         </tr>
                     </thead>
                     <tbody id="leaderboardBody" class="divide-y divide-adistec-blue1/20 text-sm">
@@ -571,18 +571,35 @@
                     <td class="py-3.5 px-4 text-center">
                         ${pointsCellHTML}
                     </td>
-                    <td class="py-3.5 px-4 text-center admin-only" style="display: none;">
-                        <div class="flex justify-center gap-1.5">
+                    <td class="py-3.5 px-4 text-center admin-only justify-center" style="display: none;">
+                        <div class="flex flex-wrap justify-center gap-1.5">
+                            <!-- Botones de Suma -->
+                            <button onclick="modifyPoints(${index}, 1)" title="+1 Punto" 
+                                    class="w-8 h-8 rounded-lg bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-400 font-bold text-xs flex items-center justify-center transition-all shadow-sm border border-emerald-500/30">
+                                +1
+                            </button>
+                            <button onclick="modifyPoints(${index}, 5)" title="+5 Puntos" 
+                                    class="w-8 h-8 rounded-lg bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-400 font-bold text-xs flex items-center justify-center transition-all shadow-sm border border-emerald-500/30">
+                                +5
+                            </button>
                             <button onclick="modifyPoints(${index}, 10)" title="+10 Puntos" 
-                                    class="w-8 h-8 rounded-lg bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-400 font-bold flex items-center justify-center transition-all shadow-sm">
+                                    class="w-8 h-8 rounded-lg bg-adistec-cyan1/20 hover:bg-adistec-cyan1/30 text-adistec-cyan3 font-bold text-xs flex items-center justify-center transition-all shadow-sm border border-adistec-cyan1/30">
                                 +10
                             </button>
-                            <button onclick="modifyPoints(${index}, 50)" title="+50 Puntos" 
-                                    class="w-8 h-8 rounded-lg bg-adistec-cyan1/20 hover:bg-adistec-cyan1/30 text-adistec-cyan3 font-bold flex items-center justify-center transition-all shadow-sm border border-adistec-cyan1/30">
-                                +50
+                            
+                            <div class="w-px h-6 bg-adistec-blue1/40 self-center mx-0.5"></div>
+                            
+                            <!-- Botones de Resta -->
+                            <button onclick="modifyPoints(${index}, -1)" title="-1 Punto" 
+                                    class="w-8 h-8 rounded-lg bg-rose-500/20 hover:bg-rose-500/30 text-rose-400 font-bold text-xs flex items-center justify-center transition-all shadow-sm border border-rose-500/30">
+                                -1
+                            </button>
+                            <button onclick="modifyPoints(${index}, -5)" title="-5 Puntos" 
+                                    class="w-8 h-8 rounded-lg bg-rose-500/20 hover:bg-rose-500/30 text-rose-400 font-bold text-xs flex items-center justify-center transition-all shadow-sm border border-rose-500/30">
+                                -5
                             </button>
                             <button onclick="modifyPoints(${index}, -10)" title="-10 Puntos" 
-                                    class="w-8 h-8 rounded-lg bg-rose-500/20 hover:bg-rose-500/30 text-rose-400 font-bold flex items-center justify-center transition-all shadow-sm">
+                                    class="w-8 h-8 rounded-lg bg-rose-500/20 hover:bg-rose-500/30 text-rose-400 font-bold text-xs flex items-center justify-center transition-all shadow-sm border border-rose-500/30">
                                 -10
                             </button>
                         </div>
